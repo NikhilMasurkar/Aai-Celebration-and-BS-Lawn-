@@ -39,25 +39,61 @@ export const heroImage = photo(
   "Wedding ritual under a floral canopy",
 )
 
-export const spaces = [
+// The three venues. Facts come from each venue's package poster; photos are placeholders.
+export const venues = [
   {
-    venue: "hall",
-    title: { mr: "वेडिंग हॉल", en: "Wedding Hall" },
+    id: "palace",
+    type: "hall",
+    name: { mr: "आई Celebration Palace", en: "Aai Celebration Palace" },
+    tab: { mr: "पॅलेस", en: "Palace" },
     image: photo("1708606811579-23b18fc48007", "झुंबरासह सजवलेला हॉल स्टेज", "Decorated hall stage with chandeliers"),
     facts: [
-      { mr: "4 AC रूम व 1 Non AC हॉल", en: "4 AC rooms and 1 non-AC hall" },
-      { mr: "संपूर्ण डक्टिंग मॅरेज हॉल / डायनिंग हॉल", en: "Fully ducted marriage and dining hall" },
-      { mr: "300 पाहुण्यांसाठी बैठक व्यवस्था", en: "Seating for 300 guests" },
+      { mr: "पाहुण्यांसाठी 4 AC रूम व 1 Non AC हॉल", en: "4 AC rooms and 1 non-AC hall for guests" },
+      { mr: "संपूर्ण डक्टिंग मॅरेज हॉल / डायनिंग हॉल", en: "Fully ducted marriage hall and dining hall" },
+      { mr: "300 चेयर व 20 कुशन सोफा", en: "300 chairs and 20 cushion sofas" },
+    ],
+    photos: [
+      photo("1745573674471-e057af420757", "फुलांनी सजवलेला लग्न स्टेज", "Wedding stage decorated with flowers"),
+      photo("1745573674206-1d4805fcc427", "लग्नासाठी सजवलेला स्टेज", "Stage decorated for a wedding"),
+      photo("1745573673416-66e829644ae9", "समारंभासाठी तयार स्टेज", "Stage ready for a celebration"),
+      photo("1608713709464-04cfb951c93f", "लाल पडद्यांसह स्टेज", "Stage with red curtains"),
+      photo("1708606811579-23b18fc48007", "झुंबरासह सजवलेला हॉल स्टेज", "Decorated hall stage with chandeliers"),
     ],
   },
   {
-    venue: "lawn",
-    title: { mr: "लॉन", en: "Lawn" },
+    id: "aai-lawn",
+    type: "lawn",
+    name: { mr: "आई लॉन", en: "Aai Lawn" },
+    tab: { mr: "आई लॉन", en: "Aai Lawn" },
+    image: photo("1769230387364-8b0c2b63e18b", "सिरीज लाइटिंगखाली लग्नाचे स्वागत समारंभ", "Wedding reception under string lights"),
+    facts: [
+      { mr: "लॉन डेकोरेशन, पार लाईट आणि सिरीज लाइटिंग", en: "Lawn decoration, par lights and series lighting" },
+      { mr: "200 चेअर आणि 12 नग सोफा", en: "200 chairs and 12 sofas" },
+      { mr: "पाहुण्यांसाठी 4 रुम व सेल्फी पॉईंट", en: "4 rooms for guests and a selfie point" },
+    ],
+    photos: [
+      photo("1769230387364-8b0c2b63e18b", "सिरीज लाइटिंगखाली लग्नाचे स्वागत समारंभ", "Wedding reception under string lights"),
+      photo("1769230387242-6917578550d6", "रात्री फुलांच्या कमानीखाली वधू-वर", "Couple under a floral arch at night"),
+      photo("1587271636175-90d58cdad458", "फुलांच्या मंडपाखाली वधू-वर", "Couple seated under a floral mandap"),
+      photo("1751891159950-bf33e1e8705b", "जेवणासाठी सजवलेले गोल टेबल", "Round table set for dinner"),
+    ],
+  },
+  {
+    id: "bs-lawn",
+    type: "lawn",
+    name: { mr: "BS लॉन", en: "BS Lawn" },
+    tab: { mr: "BS लॉन", en: "BS Lawn" },
     image: photo("1574482211311-45a2169db57c", "सिरीज लाइटिंगने उजळलेले लॉन", "Lawn lit with string lights"),
     facts: [
-      { mr: "पार लाईट आणि सिरीज लाइटिंगसह खुले लॉन", en: "Open-air lawn with par lights and series lighting" },
-      { mr: "200 पाहुण्यांपर्यंत बैठक व्यवस्था", en: "Seating for up to 200 guests" },
-      { mr: "पाहुण्यांसाठी 4 रूम", en: "4 rooms for guests" },
+      { mr: "लॉन एन्ट्री डेकोरेशन, पार लाईट आणि सिरीज लाइटिंग", en: "Lawn entry decoration, par lights and series lighting" },
+      { mr: "150 चेअर आणि 8 नग सोफा", en: "150 chairs and 8 sofas" },
+      { mr: "पॅकेजमध्ये इले. बिल समाविष्ट", en: "Electricity bill included in the package" },
+    ],
+    photos: [
+      photo("1574482211311-45a2169db57c", "सिरीज लाइटिंगने उजळलेले लॉन", "Lawn lit with string lights"),
+      photo("1764267703628-cb434215ce83", "रात्री सिरीज लाइटिंगखाली पाहुणे", "Guests under string lights at night"),
+      photo("1782309088597-535ff360bde3", "कंदिलांनी उजळलेला बागेतील मार्ग", "Garden path lit with lanterns"),
+      photo("1790090930508-8ac513c6a1c6", "सिरीज लाइटिंगने उजळलेले अंगण", "Courtyard lit with string lights"),
     ],
   },
 ]
@@ -65,7 +101,7 @@ export const spaces = [
 export const packages = [
   {
     id: "bs-lawn",
-    venue: "lawn",
+    venue: "bs-lawn",
     price: 25000,
     name: { mr: "BS लॉन पॅकेज", en: "BS Lawn Package" },
     image: photo("1782309088597-535ff360bde3", "कंदिलांनी उजळलेला बागेतील मार्ग", "Garden path lit with lanterns"),
@@ -88,7 +124,7 @@ export const packages = [
   },
   {
     id: "wedding-lawn",
-    venue: "lawn",
+    venue: "aai-lawn",
     price: 41000,
     name: { mr: "वेडिंग लॉन पॅकेज", en: "Wedding Lawn Package" },
     image: photo("1769230387364-8b0c2b63e18b", "सिरीज लाइटिंगखाली लग्नाचे स्वागत समारंभ", "Wedding reception under string lights"),
@@ -113,7 +149,7 @@ export const packages = [
   },
   {
     id: "wedding-hall",
-    venue: "hall",
+    venue: "palace",
     price: 51000,
     name: { mr: "वेडिंग हॉल पॅकेज", en: "Wedding Hall Package" },
     image: photo("1745573673583-a51f665ae48e", "फुले आणि पडद्यांनी सजवलेला लग्न स्टेज", "Wedding stage decorated with flowers and drapes"),
@@ -141,23 +177,6 @@ export const packages = [
     ],
   },
 ]
-
-export const gallery = {
-  hall: [
-    photo("1745573674471-e057af420757", "फुलांनी सजवलेला लग्न स्टेज", "Wedding stage decorated with flowers"),
-    photo("1745573674206-1d4805fcc427", "लग्नासाठी सजवलेला स्टेज", "Stage decorated for a wedding"),
-    photo("1745573673416-66e829644ae9", "समारंभासाठी तयार स्टेज", "Stage ready for a celebration"),
-    photo("1608713709464-04cfb951c93f", "लाल पडद्यांसह स्टेज", "Stage with red curtains"),
-    photo("1708606811579-23b18fc48007", "झुंबरासह सजवलेला हॉल स्टेज", "Decorated hall stage with chandeliers"),
-  ],
-  lawn: [
-    photo("1574482211311-45a2169db57c", "सिरीज लाइटिंगने उजळलेले लॉन", "Lawn lit with string lights"),
-    photo("1769230387364-8b0c2b63e18b", "सिरीज लाइटिंगखाली लग्नाचे स्वागत समारंभ", "Wedding reception under string lights"),
-    photo("1764267703628-cb434215ce83", "रात्री सिरीज लाइटिंगखाली पाहुणे", "Guests under string lights at night"),
-    photo("1769230387242-6917578550d6", "रात्री फुलांच्या कमानीखाली वधू-वर", "Couple under a floral arch at night"),
-    photo("1587271636175-90d58cdad458", "फुलांच्या मंडपाखाली वधू-वर", "Couple seated under a floral mandap"),
-  ],
-}
 
 export const occasions = [
   { mr: "लग्न", en: "Weddings" },
@@ -236,8 +255,6 @@ export const ui = {
   enquire: { mr: "WhatsApp वर चौकशी करा", en: "Enquire on WhatsApp" },
   included: { mr: "पॅकेजमध्ये मिळणाऱ्या सुविधा", en: "Included in the package" },
   extras: { mr: "चार्जेस असलेल्या इतर सुविधा", en: "Available at extra charge" },
-  venueHall: { mr: "हॉल", en: "Hall" },
-  venueLawn: { mr: "लॉन", en: "Lawn" },
   spacesTitle: { mr: "आमची ठिकाणे", en: "Our Spaces" },
   packagesTitle: { mr: "पॅकेजेस", en: "Packages" },
   galleryTitle: { mr: "फोटो गॅलरी", en: "Gallery" },

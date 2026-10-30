@@ -1,5 +1,5 @@
 import { render, screen, within } from '@testing-library/react'
-import { packages, ui } from '@/content'
+import { packages, ui, venues } from '@/content'
 import { LangProvider } from '@/lang'
 import ContactBar from './ContactBar'
 import Packages from './Packages'
@@ -18,6 +18,14 @@ it('lists included and extra items on each card', () => {
   const hall = screen.getByRole('article', { name: packages[2].name.mr })
   expect(within(hall).getByText('स्पीकर')).toBeInTheDocument()
   expect(within(hall).getByText('20 कुशन सोफा')).toBeInTheDocument()
+})
+
+it('names the venue on each package card', () => {
+  renderIn(<Packages />)
+  packages.forEach((p) => {
+    const card = screen.getByRole('article', { name: p.name.mr })
+    expect(within(card).getByText(venues.find((v) => v.id === p.venue).name.mr)).toBeInTheDocument()
+  })
 })
 
 it('opens WhatsApp with the package and price already typed, in Marathi', () => {

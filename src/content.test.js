@@ -1,5 +1,5 @@
 import * as content from './content'
-import { contact, gallery, packages, ruleHighlights, rules } from './content'
+import { contact, packages, ruleHighlights, rules, venues } from './content'
 
 // Anything with an mr or en key is a text pair — so a forgotten or misspelt key is caught, not skipped.
 const isText = (v) => v && typeof v === 'object' && !Array.isArray(v) && ('mr' in v || 'en' in v)
@@ -12,7 +12,13 @@ function collect(value, match, out = []) {
 
 it('has the three packages with poster prices in order', () => {
   expect(packages.map((p) => p.price)).toEqual([25000, 41000, 51000])
-  expect(packages.map((p) => p.venue)).toEqual(['lawn', 'lawn', 'hall'])
+  expect(packages.map((p) => p.venue)).toEqual(['bs-lawn', 'aai-lawn', 'palace'])
+})
+
+it('has the palace and both lawns as venues', () => {
+  expect(venues.map((v) => v.name.en)).toEqual(['Aai Celebration Palace', 'Aai Lawn', 'BS Lawn'])
+  expect(venues.map((v) => v.type)).toEqual(['hall', 'lawn', 'lawn'])
+  for (const p of packages) expect(venues.map((v) => v.id)).toContain(p.venue)
 })
 
 it('lists every included and extra item from the posters', () => {
@@ -59,6 +65,5 @@ it('gives every image a source and bilingual alt text', () => {
     // phones must not download the 1600px desktop photo
     expect(img.srcSet).toMatch(/ 640w, .+ 960w, .+ 1600w$/)
   }
-  expect(gallery.hall.length).toBeGreaterThanOrEqual(4)
-  expect(gallery.lawn.length).toBeGreaterThanOrEqual(4)
+  for (const v of venues) expect(v.photos.length, v.id).toBeGreaterThanOrEqual(4)
 })

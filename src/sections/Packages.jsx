@@ -3,7 +3,7 @@ import SectionHeading from '@/components/SectionHeading'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { contact, packages, ui } from '@/content'
+import { contact, packages, ui, venues } from '@/content'
 import { useLang } from '@/lang'
 import { cn, formatINR, whatsappUrl } from '@/lib/utils'
 
@@ -12,6 +12,7 @@ function PackageCard({ pkg }) {
   const titleId = `pkg-${pkg.id}`
   const price = formatINR(pkg.price)
   const message = t(ui.waPackage).replace('{name}', t(pkg.name)).replace('{price}', price)
+  const venue = venues.find((v) => v.id === pkg.venue)
 
   return (
     <Card
@@ -33,11 +34,11 @@ function PackageCard({ pkg }) {
       <div className="flex flex-1 flex-col p-6">
         <Badge
           className={cn(
-            'mb-3 rounded-sm px-2.5 py-0.5 text-xs tracking-wide',
-            pkg.venue === 'hall' ? 'bg-maroon text-ivory' : 'border border-maroon bg-transparent text-maroon',
+            'mb-3 h-auto rounded-sm px-2.5 py-1 text-sm',
+            venue.type === 'hall' ? 'bg-maroon text-ivory' : 'border border-maroon bg-transparent text-maroon',
           )}
         >
-          {t(pkg.venue === 'hall' ? ui.venueHall : ui.venueLawn)}
+          {t(venue.name)}
         </Badge>
         <h3 id={titleId} className="text-2xl font-semibold text-maroon">
           {t(pkg.name)}

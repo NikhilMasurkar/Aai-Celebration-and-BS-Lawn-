@@ -4,13 +4,8 @@ import SectionHeading from '@/components/SectionHeading'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import { Dialog, DialogClose, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { gallery, ui } from '@/content'
+import { ui, venues } from '@/content'
 import { useLang } from '@/lang'
-
-const venues = [
-  { value: 'hall', label: ui.venueHall },
-  { value: 'lawn', label: ui.venueLawn },
-]
 
 export default function Gallery() {
   const { t } = useLang()
@@ -21,24 +16,24 @@ export default function Gallery() {
       <div className="mx-auto max-w-6xl">
         <SectionHeading id="gallery-title">{t(ui.galleryTitle)}</SectionHeading>
 
-        <Tabs defaultValue="hall" className="items-center">
+        <Tabs defaultValue={venues[0].id} className="items-center">
           <TabsList className="mb-8 h-auto rounded-md bg-paper p-1">
             {venues.map((v) => (
               <TabsTrigger
-                key={v.value}
-                value={v.value}
-                className="h-11 rounded-sm px-7 text-base data-[state=active]:bg-maroon data-[state=active]:text-ivory"
+                key={v.id}
+                value={v.id}
+                className="h-11 rounded-sm px-4 text-base sm:px-7 data-[state=active]:bg-maroon data-[state=active]:text-ivory"
               >
-                {t(v.label)}
+                {t(v.tab)}
               </TabsTrigger>
             ))}
           </TabsList>
 
           {venues.map((v) => (
-            <TabsContent key={v.value} value={v.value} className="w-full">
+            <TabsContent key={v.id} value={v.id} className="w-full">
               <Carousel opts={{ align: 'start' }} className="w-full">
                 <CarouselContent>
-                  {gallery[v.value].map((img) => (
+                  {v.photos.map((img) => (
                     <CarouselItem key={img.src} className="basis-[85%] sm:basis-1/2 lg:basis-1/3">
                       <button
                         type="button"
