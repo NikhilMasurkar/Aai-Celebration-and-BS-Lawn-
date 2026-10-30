@@ -42,7 +42,7 @@ export const heroImage = photo(
 export const spaces = [
   {
     venue: "hall",
-    title: { mr: "बँक्वेट हॉल", en: "Banquet Hall" },
+    title: { mr: "वेडिंग हॉल", en: "Wedding Hall" },
     image: photo("1708606811579-23b18fc48007", "झुंबरासह सजवलेला हॉल स्टेज", "Decorated hall stage with chandeliers"),
     facts: [
       { mr: "4 AC रूम व 1 Non AC हॉल", en: "4 AC rooms and 1 non-AC hall" },
