@@ -61,5 +61,5 @@ Pushing to `main` deploys automatically. One-time setup:
 
 ## QR code
 
-`qr/catalog-qr.svg` (for print and banners) and `qr/catalog-qr.png` (1024px, for WhatsApp/social), maroon with the logo in the centre (error correction H, verified to decode down to 150px).
+`qr/catalog-qr.svg` (for print and banners) and `qr/catalog-qr.png` (2048px, for WhatsApp/social), maroon with the logo in the centre (error correction H, verified to decode down to 150px).
 Both point to `https://catalog.aaicelebration.in`. The URL never changes, so printed codes never need reprinting.
