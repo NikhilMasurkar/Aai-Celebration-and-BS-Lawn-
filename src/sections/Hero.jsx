@@ -15,11 +15,11 @@ export default function Hero() {
     <section aria-labelledby="hero-title" className="relative overflow-hidden bg-maroon text-canvas">
       <div className="mx-auto grid max-w-6xl gap-x-12 px-4 pt-6 pb-14 text-center md:grid-cols-[1.15fr_1fr] md:items-center md:pt-14 md:pb-24 md:text-left">
         <div className="md:col-start-1 md:row-start-1 md:self-end">
-          <p className="rise text-base text-gold-light">{t(brand.place)}</p>
-          <h1 id="hero-title" className="rise mt-1 text-canvas" style={{ '--i': 1 }}>
+          <h1 id="hero-title" className="rise text-canvas">
             <span className="block text-[clamp(4.75rem,24vw,6rem)] leading-[0.95] text-gold-light">{mark}</span>{' '}
             <span className="block text-[clamp(1.85rem,7.5vw,3rem)] leading-tight">{rest.join(' ')}</span>
-          </h1>        </div>
+          </h1>
+        </div>
 
         <div className="mt-7 md:col-start-2 md:row-span-2 md:row-start-1 md:mt-0">
           <div className="mx-auto aspect-square w-[min(74vw,300px)] rounded-t-full border border-gold-soft/70 p-2 md:aspect-[4/5] md:w-full md:max-w-[420px]">
@@ -34,7 +34,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="rise mt-7 md:col-start-1 md:row-start-2 md:mt-8 md:self-start" style={{ '--i': 2 }}>
+        <div className="rise mt-7 md:col-start-1 md:row-start-2 md:mt-8 md:self-start" style={{ '--i': 1 }}>
           <div className="flex flex-wrap justify-center gap-3 md:justify-start">
             <Button asChild size="lg" className="h-12 rounded-md bg-gold-light px-6 text-base text-maroon-deep hover:bg-gold-soft">
               <a href="#packages">{t(ui.viewPackages)}</a>

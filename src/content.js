@@ -12,7 +12,6 @@ const photo = (id, mr, en) => ({
 
 export const brand = {
   name: { mr: "आई Celebration & BS Lawn", en: "Aai Celebration & BS Lawn" },
-  place: { mr: "हिंगणघाट, वर्धा", en: "Hinganghat, Wardha" },
   tagline: {
     mr: "जेव्हा सगळ्या गोष्टी आम्ही सांभाळणार तर तुम्हाला कशाला चिंता, बुकिंग करा आणि मोकळे व्हा",
     en: "When we take care of everything, why worry? Book with us and relax.",
