@@ -55,7 +55,7 @@ The page replaces sending 4–5 poster images on WhatsApp. **Success = more peop
 
 ### Venues (owner update)
 - **Aai Celebration Palace** — the wedding hall (Wedding Hall Package ₹51,000)
-- **Aai Lawn** — Wedding Lawn Package ₹41,000 (assumed; poster names no venue)
+- **Aai Lawn** — Wedding Lawn Package ₹41,000 (confirmed by owner)
 - **BS Lawn** — BS Lawn Package ₹25,000
 
 ### Packages
