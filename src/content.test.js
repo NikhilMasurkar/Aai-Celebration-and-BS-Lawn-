@@ -50,6 +50,8 @@ it('gives every image a source and bilingual alt text', () => {
   for (const img of images) {
     expect(img.src).toMatch(/^(https:\/\/|\/)/)
     expect(isText(img.alt)).toBe(true)
+    // phones must not download the 1600px desktop photo
+    expect(img.srcSet).toMatch(/ 640w, .+ 960w, .+ 1600w$/)
   }
   expect(gallery.hall.length).toBeGreaterThanOrEqual(4)
   expect(gallery.lawn.length).toBeGreaterThanOrEqual(4)

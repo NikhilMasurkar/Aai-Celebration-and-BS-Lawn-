@@ -46,6 +46,8 @@ export default function Gallery() {
                       >
                         <img
                           src={img.src}
+                          srcSet={img.srcSet}
+                          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 85vw"
                           alt={t(img.alt)}
                           loading="lazy"
                           className="size-full object-cover transition-transform duration-500 hover:scale-105"
@@ -67,7 +69,13 @@ export default function Gallery() {
           {open && (
             <>
               <DialogTitle className="sr-only">{t(open.alt)}</DialogTitle>
-              <img src={open.src} alt={t(open.alt)} className="max-h-[90vh] w-full rounded-md object-contain" />
+              <img
+                src={open.src}
+                srcSet={open.srcSet}
+                sizes="96vw"
+                alt={t(open.alt)}
+                className="max-h-[90vh] w-full rounded-md object-contain"
+              />
             </>
           )}
         </DialogContent>

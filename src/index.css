@@ -98,8 +98,9 @@
 }
 
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: none; }
+  /* slide only — fading text would dip below readable contrast mid-animation */
+  from { transform: translateY(24px); }
+  to { transform: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {

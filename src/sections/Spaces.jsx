@@ -12,7 +12,14 @@ export default function Spaces() {
           {spaces.map((space) => (
             <article key={space.venue}>
               <div className="aspect-[3/2] overflow-hidden rounded-md bg-paper">
-                <img src={space.image.src} alt={t(space.image.alt)} loading="lazy" className="size-full object-cover" />
+                <img
+                  src={space.image.src}
+                  srcSet={space.image.srcSet}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  alt={t(space.image.alt)}
+                  loading="lazy"
+                  className="size-full object-cover"
+                />
               </div>
               <h3 className="mt-5 text-3xl font-semibold text-maroon">{t(space.title)}</h3>
               <ul className="mt-3 space-y-2">

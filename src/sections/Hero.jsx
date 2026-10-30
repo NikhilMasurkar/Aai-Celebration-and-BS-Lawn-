@@ -10,6 +10,8 @@ export default function Hero() {
     <section className="relative isolate flex min-h-[78svh] items-end overflow-hidden bg-maroon-deep">
       <img
         src={heroImage.src}
+        srcSet={heroImage.srcSet}
+        sizes="100vw"
         alt={t(heroImage.alt)}
         fetchPriority="high"
         className="absolute inset-0 -z-10 size-full object-cover"

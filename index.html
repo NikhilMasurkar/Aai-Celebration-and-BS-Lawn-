@@ -22,18 +22,30 @@
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- keep in sync with heroImage in src/content.js -->
     <link
       rel="preload"
       as="image"
       href="https://images.unsplash.com/photo-1587271407850-8d438ca9fdf2?w=1600&q=70&auto=format&fit=crop"
+      imagesrcset="https://images.unsplash.com/photo-1587271407850-8d438ca9fdf2?w=640&q=70&auto=format&fit=crop 640w, https://images.unsplash.com/photo-1587271407850-8d438ca9fdf2?w=960&q=70&auto=format&fit=crop 960w, https://images.unsplash.com/photo-1587271407850-8d438ca9fdf2?w=1600&q=70&auto=format&fit=crop 1600w"
+      imagesizes="100vw"
       fetchpriority="high"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- fonts load without blocking first paint; text shows in the fallback font until they arrive -->
     <link
-      rel="stylesheet"
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Mukta:wght@400;500;700&family=Tiro+Devanagari+Marathi&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Mukta:wght@400;500;700&family=Tiro+Devanagari+Marathi&display=swap"
+      />
+    </noscript>
 
     <script type="application/ld+json">
       {

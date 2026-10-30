@@ -20,14 +20,21 @@ function PackageCard({ pkg }) {
       className="gap-0 overflow-hidden rounded-md border border-gold/30 bg-card py-0 shadow-none ring-0"
     >
       <div className="aspect-[4/3] bg-paper">
-        <img src={pkg.image.src} alt={t(pkg.image.alt)} loading="lazy" className="size-full object-cover" />
+        <img
+          src={pkg.image.src}
+          srcSet={pkg.image.srcSet}
+          sizes="(min-width: 1024px) 33vw, 100vw"
+          alt={t(pkg.image.alt)}
+          loading="lazy"
+          className="size-full object-cover"
+        />
       </div>
 
       <div className="flex flex-1 flex-col p-6">
         <Badge
           className={cn(
             'mb-3 rounded-sm px-2.5 py-0.5 text-xs tracking-wide',
-            pkg.venue === 'hall' ? 'bg-maroon text-ivory' : 'border border-gold bg-transparent text-gold',
+            pkg.venue === 'hall' ? 'bg-maroon text-ivory' : 'border border-maroon bg-transparent text-maroon',
           )}
         >
           {t(pkg.venue === 'hall' ? ui.venueHall : ui.venueLawn)}

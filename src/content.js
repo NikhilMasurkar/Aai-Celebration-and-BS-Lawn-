@@ -2,8 +2,11 @@
 // To change a price or an item, edit it here — nothing else needs to change.
 // Marathi text is copied verbatim from the package posters in content/.
 
+const unsplash = (id, width) => `https://images.unsplash.com/photo-${id}?w=${width}&q=70&auto=format&fit=crop`
+
 const photo = (id, mr, en) => ({
-  src: `https://images.unsplash.com/photo-${id}?w=1600&q=70&auto=format&fit=crop`,
+  src: unsplash(id, 1600),
+  srcSet: [640, 960, 1600].map((w) => `${unsplash(id, w)} ${w}w`).join(", "),
   alt: { mr, en },
 })
 
