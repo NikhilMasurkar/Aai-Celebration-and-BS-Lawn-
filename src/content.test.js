@@ -1,8 +1,8 @@
 import * as content from './content'
-import { contact, gallery, packages, rules } from './content'
+import { contact, gallery, packages, ruleHighlights, rules } from './content'
 
-const isText = (v) =>
-  v && typeof v === 'object' && !Array.isArray(v) && Object.keys(v).sort().join() === 'en,mr'
+// Anything with an mr or en key is a text pair — so a forgotten or misspelt key is caught, not skipped.
+const isText = (v) => v && typeof v === 'object' && !Array.isArray(v) && ('mr' in v || 'en' in v)
 
 function collect(value, match, out = []) {
   if (match(value)) out.push(value)
@@ -39,9 +39,15 @@ it('never leaves a string blank in either language', () => {
   const texts = collect(content, isText)
   expect(texts.length).toBeGreaterThan(50)
   for (const t of texts) {
+    expect(Object.keys(t).sort(), JSON.stringify(t)).toEqual(['en', 'mr'])
     expect(t.mr.trim(), JSON.stringify(t)).not.toBe('')
     expect(t.en.trim(), JSON.stringify(t)).not.toBe('')
   }
+})
+
+it('puts the no-refund rule among the up-front highlights', () => {
+  expect(ruleHighlights).toHaveLength(5)
+  expect(ruleHighlights.some((h) => /refund/i.test(h.en))).toBe(true)
 })
 
 it('gives every image a source and bilingual alt text', () => {

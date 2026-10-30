@@ -1,7 +1,8 @@
+import { X } from 'lucide-react'
 import { useState } from 'react'
 import SectionHeading from '@/components/SectionHeading'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
-import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
+import { Dialog, DialogClose, DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { gallery, ui } from '@/content'
 import { useLang } from '@/lang'
@@ -21,12 +22,12 @@ export default function Gallery() {
         <SectionHeading id="gallery-title">{t(ui.galleryTitle)}</SectionHeading>
 
         <Tabs defaultValue="hall" className="items-center">
-          <TabsList className="mb-8 h-11 rounded-md bg-paper p-1">
+          <TabsList className="mb-8 h-auto rounded-md bg-paper p-1">
             {venues.map((v) => (
               <TabsTrigger
                 key={v.value}
                 value={v.value}
-                className="h-9 rounded-sm px-6 text-base data-[state=active]:bg-maroon data-[state=active]:text-ivory"
+                className="h-11 rounded-sm px-7 text-base data-[state=active]:bg-maroon data-[state=active]:text-ivory"
               >
                 {t(v.label)}
               </TabsTrigger>
@@ -65,10 +66,20 @@ export default function Gallery() {
       </div>
 
       <Dialog open={open !== null} onOpenChange={(isOpen) => !isOpen && setOpen(null)}>
-        <DialogContent className="max-w-[min(96vw,1200px)] border-none bg-transparent p-0 shadow-none ring-0 sm:max-w-[min(96vw,1200px)]">
+        <DialogContent
+          showCloseButton={false}
+          overlayClassName="bg-black/85"
+          className="max-w-[min(96vw,1200px)] border-none bg-transparent p-0 shadow-none ring-0 sm:max-w-[min(96vw,1200px)]"
+        >
           {open && (
             <>
               <DialogTitle className="sr-only">{t(open.alt)}</DialogTitle>
+              <DialogClose
+                aria-label={t(ui.closePhoto)}
+                className="absolute -top-14 right-0 flex size-11 items-center justify-center rounded-full bg-ivory text-maroon shadow-md focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
+              >
+                <X className="size-5" aria-hidden="true" />
+              </DialogClose>
               <img
                 src={open.src}
                 srcSet={open.srcSet}

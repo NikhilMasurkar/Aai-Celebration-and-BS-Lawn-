@@ -167,6 +167,7 @@ export const occasions = [
 ]
 
 export const ruleHighlights = [
+  { mr: "बुकिंगनंतर तारीख बदल नाही व ॲडव्हान्स परत मिळणार नाही", en: "No date change after booking; the advance is non-refundable" },
   { mr: "बुकिंगसाठी ५०% ॲडव्हान्स", en: "50% advance to confirm the booking" },
   { mr: "उर्वरित रक्कम कार्यक्रमाच्या १० दिवस आधी", en: "Balance due 10 days before the event" },
   { mr: "हॉल: आदल्या दिवशी संध्या. ७ ते लग्नदिवशी संध्या. ६", en: "Hall: 7 PM the day before to 6 PM on the day" },
@@ -247,6 +248,7 @@ export const ui = {
   openMaps: { mr: "Google Maps मध्ये उघडा", en: "Open in Google Maps" },
   contactTitle: { mr: "संपर्क", en: "Contact" },
   language: { mr: "भाषा निवडा", en: "Choose language" },
+  closePhoto: { mr: "फोटो बंद करा", en: "Close photo" },
   waGeneral: {
     mr: "नमस्कार, मला आई Celebration & BS Lawn च्या बुकिंगबद्दल माहिती हवी आहे.",
     en: "Hello, I'd like to know about booking Aai Celebration & BS Lawn.",

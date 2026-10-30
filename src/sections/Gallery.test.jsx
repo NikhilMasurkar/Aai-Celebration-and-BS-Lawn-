@@ -26,3 +26,10 @@ it('opens a photo full-screen and closes it with Escape', async () => {
   await userEvent.keyboard('{Escape}')
   expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
 })
+
+it('closes the photo with a visible close button labelled in the chosen language', async () => {
+  renderGallery()
+  await userEvent.click(screen.getByRole('button', { name: gallery.hall[0].alt.mr }))
+  await userEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: ui.closePhoto.mr }))
+  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+})

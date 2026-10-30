@@ -42,10 +42,10 @@ export default function Header() {
             className="border-gold/50"
           >
             {/* Language names are shown in their own script and never translated. */}
-            <ToggleGroupItem value="mr" className="h-9 px-3 data-[state=on]:bg-maroon data-[state=on]:text-ivory">
+            <ToggleGroupItem value="mr" lang="mr" className="h-11 min-w-11 px-3 data-[state=on]:bg-maroon data-[state=on]:text-ivory">
               मराठी
             </ToggleGroupItem>
-            <ToggleGroupItem value="en" className="h-9 px-3 data-[state=on]:bg-maroon data-[state=on]:text-ivory">
+            <ToggleGroupItem value="en" className="h-11 min-w-11 px-3 data-[state=on]:bg-maroon data-[state=on]:text-ivory">
               EN
             </ToggleGroupItem>
           </ToggleGroup>

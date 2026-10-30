@@ -50,6 +50,12 @@ it('still works when the browser blocks storage', () => {
   expect(screen.getByText(brand.name.en)).toBeInTheDocument()
 })
 
+it('falls back to Marathi when an English string is missing', () => {
+  localStorage.setItem('aai-lang', 'en')
+  renderProbe()
+  expect(api.t({ mr: 'फक्त मराठी' })).toBe('फक्त मराठी')
+})
+
 it('header toggle switches the page to English', async () => {
   render(<LangProvider><Header /><Probe /></LangProvider>)
   await userEvent.click(screen.getByRole('radio', { name: 'EN' }))

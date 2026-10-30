@@ -16,7 +16,7 @@ export default function Footer() {
           <p className="text-sm tracking-wide text-gold-light">{t(ui.contactTitle)}</p>
           <p className="mt-1 flex flex-wrap justify-center gap-x-4 text-lg">
             {contact.phones.map((phone) => (
-              <a key={phone} href={telUrl(phone)} className="underline-offset-4 hover:underline">
+              <a key={phone} href={telUrl(phone)} className="inline-flex min-h-11 items-center px-1 underline-offset-4 hover:underline">
                 {phone}
               </a>
             ))}

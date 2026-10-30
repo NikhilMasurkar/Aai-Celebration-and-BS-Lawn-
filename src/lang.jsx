@@ -29,7 +29,8 @@ export function LangProvider({ children }) {
     }
   }
 
-  const t = (text) => text[lang]
+  // a forgotten translation shows Marathi rather than a blank
+  const t = (text) => text[lang] ?? text.mr
 
   return <LangContext.Provider value={{ lang, setLang, t }}>{children}</LangContext.Provider>
 }

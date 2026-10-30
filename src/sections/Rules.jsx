@@ -12,7 +12,7 @@ export default function Rules() {
 
         <ul className="grid gap-3 sm:grid-cols-2">
           {ruleHighlights.map((h) => (
-            <li key={h.en} className="rounded-sm border-l-2 border-gold bg-card px-4 py-3 font-medium">
+            <li key={h.en} className="rounded-sm border-l-2 border-gold bg-card px-4 py-3 font-medium sm:first:col-span-2">
               {t(h)}
             </li>
           ))}
