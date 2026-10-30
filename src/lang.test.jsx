@@ -6,6 +6,7 @@ import Header from './sections/Header'
 
 let api
 function Probe() {
+  // oxlint-disable-next-line react/globals -- test probe exposes the hook's API
   api = useLang()
   return <p>{api.t(brand.name)}</p>
 }
