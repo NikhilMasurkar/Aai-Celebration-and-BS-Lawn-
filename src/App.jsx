@@ -1,6 +1,7 @@
 import { LangProvider } from './lang'
 import ContactBar from './sections/ContactBar'
 import Footer from './sections/Footer'
+import Gallery from './sections/Gallery'
 import Header from './sections/Header'
 import Hero from './sections/Hero'
 import Location from './sections/Location'
@@ -17,6 +18,7 @@ export default function App() {
         <Hero />
         <Spaces />
         <Packages />
+        <Gallery />
         <Occasions />
         <Rules />
         <Location />

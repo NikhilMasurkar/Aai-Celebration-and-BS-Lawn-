@@ -2,6 +2,8 @@ import { brand, contact, ui } from '@/content'
 import { useLang } from '@/lang'
 import { telUrl } from '@/lib/utils'
 
+const year = new Date().getFullYear()
+
 export default function Footer() {
   const { t } = useLang()
   return (
@@ -21,7 +23,7 @@ export default function Footer() {
           </p>
         </div>
         <p className="text-sm text-ivory/60">
-          © {new Date().getFullYear()} {t(brand.name)}
+          © {year} {t(brand.name)}
         </p>
       </div>
     </footer>
