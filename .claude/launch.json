@@ -1,6 +1,6 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "catalog", "runtimeExecutable": "npm", "runtimeArgs": ["run", "preview", "--", "--port", "4517", "--strictPort"], "port": 4517 }
+    { "name": "catalog", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "catalog", "run", "preview", "--", "--port", "4517", "--strictPort"], "port": 4517 }
   ]
 }
