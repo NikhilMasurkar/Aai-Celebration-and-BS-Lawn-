@@ -83,6 +83,14 @@
   }
 }
 
+/* Small label above headings. Letter-spacing breaks Devanagari, so it is English-only. */
+.eyebrow {
+  @apply text-sm font-medium text-gold-light;
+}
+:lang(en) .eyebrow {
+  @apply tracking-[0.2em] uppercase;
+}
+
 .fade-up {
   animation: fade-up 0.7s ease-out both;
   animation-timeline: view();

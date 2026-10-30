@@ -7,7 +7,7 @@ import { useLang } from '@/lang'
 export default function Location() {
   const { t } = useLang()
   return (
-    <section id="location" aria-labelledby="location-title" className="fade-up px-4 py-20 text-center">
+    <section id="location" aria-labelledby="location-title" className="fade-up scroll-mt-16 px-4 py-20 text-center">
       <div className="mx-auto max-w-xl">
         <SectionHeading id="location-title">{t(ui.locationTitle)}</SectionHeading>
         <address className="text-lg leading-relaxed not-italic">{t(contact.address)}</address>

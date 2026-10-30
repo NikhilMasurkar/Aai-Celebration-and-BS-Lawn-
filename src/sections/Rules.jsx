@@ -6,7 +6,7 @@ import { useLang } from '@/lang'
 export default function Rules() {
   const { t } = useLang()
   return (
-    <section id="rules" aria-labelledby="rules-title" className="fade-up bg-paper px-4 py-20">
+    <section id="rules" aria-labelledby="rules-title" className="fade-up scroll-mt-16 bg-paper px-4 py-20">
       <div className="mx-auto max-w-3xl">
         <SectionHeading id="rules-title">{t(ui.rulesTitle)}</SectionHeading>
 

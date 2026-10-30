@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-maroon-deep via-maroon-deep/60 to-transparent" />
 
       <div className="mx-auto w-full max-w-6xl px-4 pt-32 pb-14 sm:pb-20">
-        <p className="text-sm font-medium tracking-[0.2em] text-gold-light uppercase">{t(brand.place)}</p>
+        <p className="eyebrow">{t(brand.place)}</p>
         <h1 className="mt-3 max-w-3xl text-5xl leading-[1.05] font-semibold text-ivory sm:text-7xl">
           {t(brand.name)}
         </h1>

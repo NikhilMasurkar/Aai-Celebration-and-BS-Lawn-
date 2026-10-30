@@ -59,11 +59,14 @@ function PackageCard({ pkg }) {
           ))}
         </ul>
 
-        <Button asChild size="lg" className="mt-auto h-12 w-full rounded-md bg-maroon text-base hover:bg-maroon-deep">
-          <a href={whatsappUrl(contact.whatsapp, message)} target="_blank" rel="noopener noreferrer" className="mt-8">
-            <MessageCircle aria-hidden="true" /> {t(ui.enquire)}
-          </a>
-        </Button>
+        {/* mt-auto keeps the buttons aligned at the bottom when cards sit side by side */}
+        <div className="mt-auto pt-8">
+          <Button asChild size="lg" className="h-12 w-full rounded-md bg-maroon text-base hover:bg-maroon-deep">
+            <a href={whatsappUrl(contact.whatsapp, message)} target="_blank" rel="noopener noreferrer">
+              <MessageCircle aria-hidden="true" /> {t(ui.enquire)}
+            </a>
+          </Button>
+        </div>
       </div>
     </Card>
   )

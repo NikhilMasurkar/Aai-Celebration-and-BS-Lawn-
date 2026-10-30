@@ -16,7 +16,7 @@ export default function Gallery() {
   const [open, setOpen] = useState(null)
 
   return (
-    <section id="gallery" aria-labelledby="gallery-title" className="fade-up px-4 pb-20">
+    <section id="gallery" aria-labelledby="gallery-title" className="fade-up scroll-mt-20 px-4 pb-20">
       <div className="mx-auto max-w-6xl">
         <SectionHeading id="gallery-title">{t(ui.galleryTitle)}</SectionHeading>
 
