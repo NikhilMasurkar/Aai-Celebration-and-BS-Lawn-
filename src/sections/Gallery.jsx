@@ -12,17 +12,17 @@ export default function Gallery() {
   const [open, setOpen] = useState(null)
 
   return (
-    <section id="gallery" aria-labelledby="gallery-title" className="fade-up scroll-mt-20 px-4 pb-20">
+    <section id="gallery" aria-labelledby="gallery-title" className="scroll-mt-16 px-4 pb-20 sm:pb-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading id="gallery-title">{t(ui.galleryTitle)}</SectionHeading>
 
-        <Tabs defaultValue={venues[0].id} className="items-center">
-          <TabsList className="mb-8 h-auto rounded-md bg-paper p-1">
+        <Tabs defaultValue={venues[0].id} className="items-start">
+          <TabsList className="mb-8 h-auto rounded-md bg-mist p-1">
             {venues.map((v) => (
               <TabsTrigger
                 key={v.id}
                 value={v.id}
-                className="h-11 rounded-sm px-4 text-base sm:px-7 data-[state=active]:bg-maroon data-[state=active]:text-ivory"
+                className="h-11 rounded-sm px-4 text-base sm:px-7 data-[state=active]:bg-maroon data-[state=active]:text-canvas"
               >
                 {t(v.tab)}
               </TabsTrigger>
@@ -38,7 +38,7 @@ export default function Gallery() {
                       <button
                         type="button"
                         onClick={() => setOpen(img)}
-                        className="block aspect-[4/3] w-full overflow-hidden rounded-md bg-paper focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
+                        className="block aspect-[4/3] w-full overflow-hidden rounded-md bg-mist focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
                       >
                         <img
                           src={img.src}
@@ -52,8 +52,8 @@ export default function Gallery() {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious className="hidden border-gold/50 text-maroon md:flex" />
-                <CarouselNext className="hidden border-gold/50 text-maroon md:flex" />
+                <CarouselPrevious className="left-3 hidden size-11 border-border bg-canvas/95 text-maroon md:flex" />
+                <CarouselNext className="right-3 hidden size-11 border-border bg-canvas/95 text-maroon md:flex" />
               </Carousel>
             </TabsContent>
           ))}
@@ -71,7 +71,7 @@ export default function Gallery() {
               <DialogTitle className="sr-only">{t(open.alt)}</DialogTitle>
               <DialogClose
                 aria-label={t(ui.closePhoto)}
-                className="absolute -top-14 right-0 flex size-11 items-center justify-center rounded-full bg-ivory text-maroon shadow-md focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
+                className="absolute -top-14 right-0 flex size-11 items-center justify-center rounded-full bg-canvas text-maroon shadow-md focus-visible:ring-2 focus-visible:ring-gold focus-visible:outline-none"
               >
                 <X className="size-5" aria-hidden="true" />
               </DialogClose>

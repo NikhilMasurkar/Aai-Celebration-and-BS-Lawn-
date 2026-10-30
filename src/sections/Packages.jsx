@@ -1,6 +1,5 @@
 import { Check, MessageCircle, Plus } from 'lucide-react'
 import SectionHeading from '@/components/SectionHeading'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { contact, packages, ui, venues } from '@/content'
@@ -13,68 +12,60 @@ function PackageCard({ pkg }) {
   const price = formatINR(pkg.price)
   const message = t(ui.waPackage).replace('{name}', t(pkg.name)).replace('{price}', price)
   const venue = venues.find((v) => v.id === pkg.venue)
+  // the hall package is set in reverse (maroon) so the three cards don't read as one repeated tile
+  const dark = venue.type === 'hall'
 
   return (
     <Card
       role="article"
       aria-labelledby={titleId}
-      className="gap-0 overflow-hidden rounded-md border border-gold/30 bg-card py-0 shadow-none ring-0"
+      className={cn(
+        'gap-0 rounded-md p-6 shadow-none ring-0 sm:p-7',
+        dark ? 'border-0 bg-maroon text-canvas' : 'border border-border bg-card',
+      )}
     >
-      <div className="aspect-[4/3] bg-paper">
-        <img
-          src={pkg.image.src}
-          srcSet={pkg.image.srcSet}
-          sizes="(min-width: 1024px) 33vw, 100vw"
-          alt={t(pkg.image.alt)}
-          loading="lazy"
-          className="size-full object-cover"
-        />
-      </div>
+      <p className={cn('text-base font-medium', dark ? 'text-gold-light' : 'text-muted-ink')}>{t(venue.name)}</p>
+      <h3 id={titleId} className={cn('mt-1 text-[1.65rem]', dark ? 'text-canvas' : 'text-maroon')}>
+        {t(pkg.name)}
+      </h3>
+      <p className={cn('mt-3 font-display text-5xl leading-none', dark ? 'text-gold-light' : 'text-ink')}>{price}</p>
 
-      <div className="flex flex-1 flex-col p-6">
-        <Badge
+      <h4 className={cn('mt-7 text-base font-semibold', dark ? 'text-canvas' : 'text-ink')}>{t(ui.included)}</h4>
+      <ul className="mt-3 space-y-2">
+        {pkg.included.map((item) => (
+          <li key={item.en} className="flex gap-2.5">
+            <Check className={cn('mt-1 size-4 shrink-0', dark ? 'text-gold-light' : 'text-gold')} aria-hidden="true" />
+            <span>{t(item)}</span>
+          </li>
+        ))}
+      </ul>
+
+      <h4 className={cn('mt-6 border-t pt-5 text-base font-semibold', dark ? 'border-canvas/20 text-canvas' : 'text-ink')}>
+        {t(ui.extras)}
+      </h4>
+      <ul className={cn('mt-3 space-y-1.5', dark ? 'text-canvas/85' : 'text-muted-ink')}>
+        {pkg.extras.map((item) => (
+          <li key={item.en} className="flex gap-2.5">
+            <Plus className="mt-1 size-3.5 shrink-0" aria-hidden="true" />
+            <span>{t(item)}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* mt-auto keeps the buttons aligned at the bottom when cards sit side by side */}
+      <div className="mt-auto pt-8">
+        <Button
+          asChild
+          size="lg"
           className={cn(
-            'mb-3 h-auto rounded-sm px-2.5 py-1 text-sm',
-            venue.type === 'hall' ? 'bg-maroon text-ivory' : 'border border-maroon bg-transparent text-maroon',
+            'h-12 w-full rounded-md text-base',
+            dark ? 'bg-gold-light text-maroon-deep hover:bg-gold-soft' : 'bg-maroon text-canvas hover:bg-maroon-deep',
           )}
         >
-          {t(venue.name)}
-        </Badge>
-        <h3 id={titleId} className="text-2xl font-semibold text-maroon">
-          {t(pkg.name)}
-        </h3>
-        <p className="mt-1 text-4xl font-bold tracking-tight text-ink">{price}</p>
-
-        <h4 className="mt-6 text-sm font-medium tracking-wide text-muted-ink">{t(ui.included)}</h4>
-        <ul className="mt-3 space-y-2">
-          {pkg.included.map((item) => (
-            <li key={item.en} className="flex gap-2.5">
-              <Check className="mt-1 size-4 shrink-0 text-gold" aria-hidden="true" />
-              <span>{t(item)}</span>
-            </li>
-          ))}
-        </ul>
-
-        <h4 className="mt-6 border-t border-gold/25 pt-5 text-sm font-medium tracking-wide text-muted-ink">
-          {t(ui.extras)}
-        </h4>
-        <ul className="mt-3 space-y-1.5 text-muted-ink">
-          {pkg.extras.map((item) => (
-            <li key={item.en} className="flex gap-2.5">
-              <Plus className="mt-1 size-3.5 shrink-0" aria-hidden="true" />
-              <span>{t(item)}</span>
-            </li>
-          ))}
-        </ul>
-
-        {/* mt-auto keeps the buttons aligned at the bottom when cards sit side by side */}
-        <div className="mt-auto pt-8">
-          <Button asChild size="lg" className="h-12 w-full rounded-md bg-maroon text-base hover:bg-maroon-deep">
-            <a href={whatsappUrl(contact.whatsapp, message)} target="_blank" rel="noopener noreferrer">
-              <MessageCircle aria-hidden="true" /> {t(ui.enquire)}
-            </a>
-          </Button>
-        </div>
+          <a href={whatsappUrl(contact.whatsapp, message)} target="_blank" rel="noopener noreferrer">
+            <MessageCircle aria-hidden="true" /> {t(ui.enquire)}
+          </a>
+        </Button>
       </div>
     </Card>
   )
@@ -83,10 +74,10 @@ function PackageCard({ pkg }) {
 export default function Packages() {
   const { t } = useLang()
   return (
-    <section id="packages" aria-labelledby="packages-title" className="scroll-mt-20 px-4 py-20">
+    <section id="packages" aria-labelledby="packages-title" className="scroll-mt-16 px-4 py-20 sm:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionHeading id="packages-title">{t(ui.packagesTitle)}</SectionHeading>
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-5 lg:grid-cols-3 lg:gap-6">
           {packages.map((pkg) => (
             <PackageCard key={pkg.id} pkg={pkg} />
           ))}

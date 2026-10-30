@@ -3,20 +3,21 @@
 @import "shadcn/tailwind.css";
 
 @theme inline {
-  --font-sans: "Mukta", sans-serif;
-  --font-display: "Cormorant Garamond", "Tiro Devanagari Marathi", serif;
+  /* Both families cover Devanagari and Latin, so Marathi never falls back to a different font. */
+  --font-sans: "Anek Devanagari", system-ui, sans-serif;
+  --font-display: "Rozha One", serif;
   --font-heading: var(--font-display);
 
-  /* Brand palette — sampled from content/logo_02.png. Use these everywhere. */
-  --color-maroon: #7a0811;       /* logo lettering — primary */
-  --color-maroon-deep: #540305;  /* logo shadow — dark sections, hover */
-  --color-gold: #b87a28;         /* logo gold, deep — lines, icons on ivory */
-  --color-gold-soft: #cb9544;    /* logo gold, mid — ornaments */
-  --color-gold-light: #d1a773;   /* logo gold highlight — text/accents on maroon */
-  --color-ivory: #f8f4ed;        /* logo background — page */
-  --color-paper: #f3ece2;        /* logo background shade — surfaces */
-  --color-ink: #2b1a17;          /* maroon-tinted near-black — body text */
-  --color-muted-ink: #6e5a55;    /* secondary text */
+  /* Brand palette — maroon and gold sampled from content/logo_02.png. Use these everywhere. */
+  --color-maroon: #7a0811;       /* logo lettering — primary, hero and header */
+  --color-maroon-deep: #540305;  /* logo shadow — dark bands, hover */
+  --color-gold: #b87a28;         /* logo gold, deep — lines and icons on light */
+  --color-gold-soft: #cb9544;    /* logo gold, mid — ornament */
+  --color-gold-light: #d1a773;   /* logo gold highlight — text on maroon */
+  --color-canvas: #fbf8f7;       /* page — near-white tinted toward the maroon, not cream */
+  --color-mist: #f4eeec;         /* quiet surfaces */
+  --color-ink: #2b1a17;          /* body text */
+  --color-muted-ink: #5f4b47;    /* secondary text (≥ 7:1 on canvas) */
 
   --color-ring: var(--ring);
   --color-input: var(--input);
@@ -42,25 +43,25 @@
   --radius-xl: calc(var(--radius) * 1.4);
 }
 
-/* ponytail: light theme only — the catalog is ivory "invitation paper" by design */
+/* ponytail: light theme only — maroon hero + near-white body is the brand look */
 :root {
-  --background: #f8f4ed;
+  --background: #fbf8f7;
   --foreground: #2b1a17;
-  --card: #fbfaf5;
+  --card: #ffffff;
   --card-foreground: #2b1a17;
-  --popover: #fbfaf5;
+  --popover: #ffffff;
   --popover-foreground: #2b1a17;
   --primary: #7a0811;
-  --primary-foreground: #f8f4ed;
-  --secondary: #f3ece2;
+  --primary-foreground: #fbf8f7;
+  --secondary: #f4eeec;
   --secondary-foreground: #7a0811;
-  --muted: #f3ece2;
-  --muted-foreground: #6e5a55;
-  --accent: #f3ece2;
+  --muted: #f4eeec;
+  --muted-foreground: #5f4b47;
+  --accent: #f4eeec;
   --accent-foreground: #7a0811;
   --destructive: #b42318;
-  --border: rgb(184 122 40 / 0.3);
-  --input: rgb(184 122 40 / 0.45);
+  --border: rgb(122 8 17 / 0.14);
+  --input: rgb(122 8 17 / 0.25);
   --ring: #b87a28;
   --radius: 0.375rem;
 }
@@ -71,39 +72,40 @@
   }
   html {
     @apply scroll-smooth font-sans;
+    font-size: 106.25%; /* 17px — Anek's x-height runs small */
   }
   body {
-    @apply bg-background text-foreground text-base antialiased;
+    @apply bg-background text-foreground antialiased;
+    line-height: 1.55;
   }
   h1, h2, h3 {
-    @apply font-display text-ink;
+    @apply font-display font-normal text-ink;
+    font-synthesis: none; /* Rozha One has one weight; never fake bold */
+    text-wrap: balance;
+    line-height: 1.12;
   }
   button:not(:disabled), [role="button"]:not(:disabled) {
     cursor: pointer;
   }
 }
 
-/* Small label above headings. Letter-spacing breaks Devanagari, so it is English-only. */
-.eyebrow {
-  @apply text-sm font-medium text-gold-light;
+/* Hero entrance: one orchestrated load, transform/clip only so content is visible even if it never runs. */
+.rise {
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 110ms);
 }
-:lang(en) .eyebrow {
-  @apply tracking-[0.2em] uppercase;
+@keyframes rise {
+  from { transform: translateY(28px); }
 }
-
-.fade-up {
-  animation: fade-up 0.7s ease-out both;
-  animation-timeline: view();
-  animation-range: entry 0% entry 40%;
+.arch-reveal {
+  animation: arch-reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.25s backwards;
 }
-
-@keyframes fade-up {
-  /* slide only — fading text would dip below readable contrast mid-animation */
-  from { transform: translateY(24px); }
-  to { transform: none; }
+@keyframes arch-reveal {
+  from { clip-path: inset(100% 0 0 0 round 999px 999px 0 0); }
+  to { clip-path: inset(0 0 0 0 round 999px 999px 0 0); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .fade-up { animation: none; }
+  .rise, .arch-reveal { animation: none; }
 }

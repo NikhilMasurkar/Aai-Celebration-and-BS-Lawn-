@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from './App'
-import { contact, ruleHighlights, ui } from './content'
+import { brand, contact, ruleHighlights, ui, venues } from './content'
 
 it('shows every section heading in Marathi by default', () => {
   render(<App />)
@@ -13,6 +13,13 @@ it('shows every section heading in Marathi by default', () => {
 it('hero button jumps to the packages section', () => {
   render(<App />)
   expect(screen.getByRole('link', { name: ui.viewPackages.mr })).toHaveAttribute('href', '#packages')
+})
+
+it('hero names all three venues and the lowest package price', () => {
+  render(<App />)
+  const hero = screen.getByRole('region', { name: brand.name.mr })
+  for (const v of venues) expect(within(hero).getByText(v.name.mr, { exact: false })).toBeInTheDocument()
+  expect(within(hero).getByText('पॅकेज फक्त ₹25,000 पासून')).toBeInTheDocument()
 })
 
 it('shows key rules up front and all 13 after expanding', async () => {

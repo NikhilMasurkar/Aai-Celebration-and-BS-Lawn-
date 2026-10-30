@@ -34,9 +34,9 @@ export const contact = {
 
 // Placeholder photos (Unsplash) — replace with real venue photos later.
 export const heroImage = photo(
-  "1587271407850-8d438ca9fdf2",
-  "फुलांच्या मंडपाखाली लग्नविधी",
-  "Wedding ritual under a floral canopy",
+  "1745573673583-a51f665ae48e",
+  "फुले आणि पडद्यांनी सजवलेला लग्न स्टेज",
+  "Wedding stage decorated with flowers and drapes",
 )
 
 // The three venues. Facts come from each venue's package poster; photos are placeholders.
@@ -104,7 +104,6 @@ export const packages = [
     venue: "bs-lawn",
     price: 25000,
     name: { mr: "BS लॉन पॅकेज", en: "BS Lawn Package" },
-    image: photo("1782309088597-535ff360bde3", "कंदिलांनी उजळलेला बागेतील मार्ग", "Garden path lit with lanterns"),
     included: [
       { mr: "मॅरेज सोफा", en: "Marriage sofa" },
       { mr: "स्टेज डेकोरेशन", en: "Stage decoration" },
@@ -127,7 +126,6 @@ export const packages = [
     venue: "aai-lawn",
     price: 41000,
     name: { mr: "वेडिंग लॉन पॅकेज", en: "Wedding Lawn Package" },
-    image: photo("1769230387364-8b0c2b63e18b", "सिरीज लाइटिंगखाली लग्नाचे स्वागत समारंभ", "Wedding reception under string lights"),
     included: [
       { mr: "पाहुण्यान करीता 4 रुम", en: "4 rooms for guests" },
       { mr: "मॅरेज सोफा", en: "Marriage sofa" },
@@ -152,7 +150,6 @@ export const packages = [
     venue: "palace",
     price: 51000,
     name: { mr: "वेडिंग हॉल पॅकेज", en: "Wedding Hall Package" },
-    image: photo("1745573673583-a51f665ae48e", "फुले आणि पडद्यांनी सजवलेला लग्न स्टेज", "Wedding stage decorated with flowers and drapes"),
     included: [
       { mr: "पाहुण्यान करीता 4 AC रूम व 1 Non AC हॉल", en: "4 AC rooms and 1 non-AC hall for guests" },
       { mr: "मॅरेज सोफा", en: "Marriage sofa" },
@@ -266,6 +263,7 @@ export const ui = {
   contactTitle: { mr: "संपर्क", en: "Contact" },
   language: { mr: "भाषा निवडा", en: "Choose language" },
   closePhoto: { mr: "फोटो बंद करा", en: "Close photo" },
+  fromPrice: { mr: "पॅकेज फक्त {price} पासून", en: "Packages from {price}" },
   waGeneral: {
     mr: "नमस्कार, मला आई Celebration & BS Lawn च्या बुकिंगबद्दल माहिती हवी आहे.",
     en: "Hello, I'd like to know about booking Aai Celebration & BS Lawn.",

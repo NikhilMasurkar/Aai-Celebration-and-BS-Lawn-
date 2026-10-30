@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-// Thin gold rule with a small diamond motif, echoing the logo's divider.
+// Thin gold rule with a small diamond motif, echoing the logo's divider. Used sparingly.
 export function Ornament({ className }) {
   return (
     <svg viewBox="0 0 240 16" aria-hidden="true" className={cn('h-4 w-48 text-gold', className)}>
@@ -13,13 +13,10 @@ export function Ornament({ className }) {
   )
 }
 
-export default function SectionHeading({ id, children }) {
+export default function SectionHeading({ id, children, className }) {
   return (
-    <div className="mb-10 flex flex-col items-center gap-3 text-center">
-      <h2 id={id} className="text-3xl font-semibold text-maroon sm:text-4xl">
-        {children}
-      </h2>
-      <Ornament />
-    </div>
+    <h2 id={id} className={cn('mb-8 text-[clamp(2.1rem,7vw,3.25rem)] text-maroon sm:mb-10', className)}>
+      {children}
+    </h2>
   )
 }

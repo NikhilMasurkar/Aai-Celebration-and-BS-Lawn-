@@ -7,7 +7,7 @@ import { telUrl, whatsappUrl } from '@/lib/utils'
 export default function ContactBar() {
   const { t } = useLang()
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-gold/30 bg-ivory/95 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur-sm md:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-gold/30 bg-canvas/95 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur-sm md:hidden">
       <a
         href={telUrl(contact.phones[0])}
         className="flex h-12 items-center justify-center gap-2 rounded-md border border-maroon font-medium text-maroon"
@@ -18,7 +18,7 @@ export default function ContactBar() {
         href={whatsappUrl(contact.whatsapp, t(ui.waGeneral))}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex h-12 items-center justify-center gap-2 rounded-md bg-maroon font-medium text-ivory"
+        className="flex h-12 items-center justify-center gap-2 rounded-md bg-maroon font-medium text-canvas"
       >
         <MessageCircle className="size-4" aria-hidden="true" /> {t(ui.whatsapp)}
       </a>
