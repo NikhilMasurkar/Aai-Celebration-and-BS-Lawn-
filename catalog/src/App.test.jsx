@@ -33,6 +33,12 @@ it('shows key rules up front and all 13 after expanding', async () => {
   for (const h of ruleHighlights) expect(within(rules).getByText(h.mr)).toBeInTheDocument()
   await userEvent.click(within(rules).getByRole('button', { name: ui.rulesShowAll.mr }))
   expect(within(rules).getAllByRole('listitem').length).toBe(ruleHighlights.length + 13)
+  // the open list must size to its text: a height frozen at open time cut off the last rules
+  // once the text re-wrapped (font load, language switch, phone rotation)
+  const list = within(rules).getAllByRole('list').find((l) => l.tagName === 'OL')
+  for (let el = list.parentElement; el && el !== rules; el = el.parentElement) {
+    expect(el.className).not.toMatch(/radix-accordion-content-height/)
+  }
 })
 
 it('links the address to Google Maps in a new tab', () => {
