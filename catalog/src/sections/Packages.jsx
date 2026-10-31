@@ -12,38 +12,36 @@ function PackageCard({ pkg }) {
   const price = formatINR(pkg.price)
   const message = t(ui.waPackage).replace('{name}', t(pkg.name)).replace('{price}', price)
   const venue = venues.find((v) => v.id === pkg.venue)
-  // the hall package is set in reverse (maroon) so the three cards don't read as one repeated tile
-  const dark = venue.type === 'hall'
+  // the hall package sits on a soft tint so the three cards don't read as one repeated tile
+  const tinted = venue.type === 'hall'
 
   return (
     <Card
       role="article"
       aria-labelledby={titleId}
       className={cn(
-        'gap-0 rounded-md p-6 shadow-none ring-0 sm:p-7',
-        dark ? 'border-0 bg-maroon text-canvas' : 'border border-border bg-card',
+        'gap-0 rounded-2xl border p-6 shadow-none ring-0 sm:p-7',
+        tinted ? 'border-maroon/20 bg-mist' : 'border-border bg-white',
       )}
     >
-      <p className={cn('text-base font-medium', dark ? 'text-gold-light' : 'text-muted-ink')}>{t(venue.name)}</p>
-      <h3 id={titleId} className={cn('mt-1 text-[1.65rem]', dark ? 'text-canvas' : 'text-maroon')}>
+      <p className="text-base font-semibold text-gold-deep">{t(venue.name)}</p>
+      <h3 id={titleId} className="mt-1 text-[1.65rem] text-maroon">
         {t(pkg.name)}
       </h3>
-      <p className={cn('mt-3 font-display text-5xl leading-none', dark ? 'text-gold-light' : 'text-ink')}>{price}</p>
+      <p className="mt-3 font-display text-5xl leading-none text-ink">{price}</p>
 
-      <h4 className={cn('mt-7 text-base font-semibold', dark ? 'text-canvas' : 'text-ink')}>{t(ui.included)}</h4>
+      <h4 className="mt-7 text-base font-semibold text-ink">{t(ui.included)}</h4>
       <ul className="mt-3 space-y-2">
         {pkg.included.map((item) => (
           <li key={item.en} className="flex gap-2.5">
-            <Check className={cn('mt-1 size-4 shrink-0', dark ? 'text-gold-light' : 'text-gold')} aria-hidden="true" />
+            <Check className="mt-1 size-4 shrink-0 text-gold" aria-hidden="true" />
             <span>{t(item)}</span>
           </li>
         ))}
       </ul>
 
-      <h4 className={cn('mt-6 border-t pt-5 text-base font-semibold', dark ? 'border-canvas/20 text-canvas' : 'text-ink')}>
-        {t(ui.extras)}
-      </h4>
-      <ul className={cn('mt-3 space-y-1.5', dark ? 'text-canvas/85' : 'text-muted-ink')}>
+      <h4 className="mt-6 border-t border-maroon/15 pt-5 text-base font-semibold text-ink">{t(ui.extras)}</h4>
+      <ul className="mt-3 space-y-1.5 text-muted-ink">
         {pkg.extras.map((item) => (
           <li key={item.en} className="flex gap-2.5">
             <Plus className="mt-1 size-3.5 shrink-0" aria-hidden="true" />
@@ -57,10 +55,7 @@ function PackageCard({ pkg }) {
         <Button
           asChild
           size="lg"
-          className={cn(
-            'h-12 w-full rounded-md text-base',
-            dark ? 'bg-gold-light text-maroon-deep hover:bg-gold-soft' : 'bg-maroon text-canvas hover:bg-maroon-deep',
-          )}
+          className="h-12 w-full rounded-lg bg-maroon text-base text-white hover:bg-maroon-deep"
         >
           <a href={whatsappUrl(contact.whatsapp, message)} target="_blank" rel="noopener noreferrer">
             <MessageCircle aria-hidden="true" /> {t(ui.enquire)}

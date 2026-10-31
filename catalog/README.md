@@ -31,8 +31,8 @@ To use your own:
 ## Colours
 
 The palette is sampled from the logo and defined once in `src/index.css` (`@theme`):
-maroon `#7A0811`, deep maroon `#540305`, gold `#B87A28` / `#CB9544` / `#D1A773`, page `#FBF8F7` (canvas), surface `#F4EEEC` (mist).
-Use the Tailwind names (`bg-maroon`, `text-gold-light`, `bg-canvas`, `bg-mist`, …) rather than raw hex values.
+maroon `#7A0811`, deep maroon `#540305`, gold `#B87A28` / `#CB9544` / `#D1A773`, page white, surface `#F4EEEC` (mist), small gold text `#8A5A17` (gold-deep). Light, photo-first theme: maroon and gold are accents only.
+Use the Tailwind names (`bg-maroon`, `text-gold-deep`, `bg-mist`, …) rather than raw hex values.
 
 Fonts: **Rozha One** for headings and **Anek Devanagari** for text. Both cover Marathi and English.
 

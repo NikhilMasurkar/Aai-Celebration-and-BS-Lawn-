@@ -8,49 +8,53 @@ const lowestPrice = Math.min(...packages.map((p) => p.price))
 
 export default function Hero() {
   const { t } = useLang()
-  // "आई Celebration & BS Lawn" → the first word is the logo mark, set large in gold
+  // "आई Celebration & BS Lawn" → the first word is the logo mark, set large
   const [mark, ...rest] = t(brand.name).split(' ')
 
   return (
-    <section aria-labelledby="hero-title" className="relative overflow-hidden bg-maroon text-canvas">
-      <div className="mx-auto grid max-w-6xl gap-x-12 px-4 pt-6 pb-14 text-center md:grid-cols-[1.15fr_1fr] md:items-center md:pt-14 md:pb-24 md:text-left">
-        <div className="md:col-start-1 md:row-start-1 md:self-end">
-          <h1 id="hero-title" className="rise text-canvas">
-            <span className="block text-[clamp(4.75rem,24vw,6rem)] leading-[0.95] text-gold-light">{mark}</span>{' '}
-            <span className="block text-[clamp(1.85rem,7.5vw,3rem)] leading-tight">{rest.join(' ')}</span>
+    <section aria-labelledby="hero-title" className="bg-background">
+      <div className="mx-auto grid max-w-6xl md:grid-cols-[1fr_1.15fr] md:items-center md:gap-12 md:px-4 md:py-14">
+        {/* phones: edge-to-edge photo first; desktop: photo on the right */}
+        <div className="md:order-2">
+          <img
+            src={heroImage.src}
+            srcSet={heroImage.srcSet}
+            sizes="(min-width: 768px) 55vw, 100vw"
+            alt={t(heroImage.alt)}
+            fetchPriority="high"
+            className="photo-reveal h-[min(42svh,400px)] w-full rounded-b-[28px] bg-mist object-cover md:h-[min(72svh,620px)] md:rounded-[28px]"
+          />
+        </div>
+
+        <div className="px-4 pt-6 pb-14 md:order-1 md:p-0">
+          <h1 id="hero-title" className="rise">
+            <span className="text-[clamp(3.5rem,16vw,5.5rem)] leading-none text-maroon">{mark}</span>{' '}
+            <span className="block text-[clamp(1.85rem,7.5vw,3rem)] leading-tight text-ink">{rest.join(' ')}</span>
           </h1>
-        </div>
+          <p className="rise mt-4 max-w-md text-lg leading-relaxed text-muted-ink" style={{ '--i': 1 }}>
+            {t(brand.tagline)}
+          </p>
 
-        <div className="mt-7 md:col-start-2 md:row-span-2 md:row-start-1 md:mt-0">
-          <div className="mx-auto aspect-square w-[min(74vw,300px)] rounded-t-full border border-gold-soft/70 p-2 md:aspect-[4/5] md:w-full md:max-w-[420px]">
-            <img
-              src={heroImage.src}
-              srcSet={heroImage.srcSet}
-              sizes="(min-width: 768px) 420px, 74vw"
-              alt={t(heroImage.alt)}
-              fetchPriority="high"
-              className="arch-reveal size-full rounded-t-full bg-maroon-deep object-cover"
-            />
+          <div className="rise mt-7" style={{ '--i': 2 }}>
+            <div className="flex flex-wrap gap-3">
+              <Button asChild size="lg" className="h-12 rounded-lg bg-maroon px-6 text-base text-white hover:bg-maroon-deep">
+                <a href="#packages">{t(ui.viewPackages)}</a>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="ghost"
+                className="h-12 rounded-lg border border-solid border-maroon/35 bg-transparent px-6 text-base text-maroon hover:bg-mist hover:text-maroon"
+              >
+                <a href={telUrl(contact.phones[0])}>
+                  <Phone aria-hidden="true" /> {t(ui.call)}
+                </a>
+              </Button>
+            </div>
+            <p className="mt-4 text-base font-semibold text-gold-deep">
+              {t(ui.fromPrice).replace('{price}', formatINR(lowestPrice))}
+            </p>
           </div>
-        </div>
-
-        <div className="rise mt-7 md:col-start-1 md:row-start-2 md:mt-8 md:self-start" style={{ '--i': 1 }}>
-          <div className="flex flex-wrap justify-center gap-3 md:justify-start">
-            <Button asChild size="lg" className="h-12 rounded-md bg-gold-light px-6 text-base text-maroon-deep hover:bg-gold-soft">
-              <a href="#packages">{t(ui.viewPackages)}</a>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="ghost"
-              className="h-12 rounded-md border border-solid border-canvas/55 bg-transparent px-6 text-base text-canvas hover:bg-canvas/10 hover:text-canvas"
-            >
-              <a href={telUrl(contact.phones[0])}>
-                <Phone aria-hidden="true" /> {t(ui.call)}
-              </a>
-            </Button>
-          </div>
-          <p className="mt-4 text-base text-gold-light">{t(ui.fromPrice).replace('{price}', formatINR(lowestPrice))}</p>
         </div>
       </div>
     </section>

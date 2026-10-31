@@ -21,6 +21,12 @@ it('hero shows the lowest package price', () => {
   expect(within(hero).getByText('पॅकेज फक्त ₹25,000 पासून')).toBeInTheDocument()
 })
 
+it('hero carries the brand tagline under the name', () => {
+  render(<App />)
+  const hero = screen.getByRole('region', { name: brand.name.mr })
+  expect(within(hero).getByText(brand.tagline.mr)).toBeInTheDocument()
+})
+
 it('shows key rules up front and all 13 after expanding', async () => {
   render(<App />)
   const rules = screen.getByRole('region', { name: ui.rulesTitle.mr })

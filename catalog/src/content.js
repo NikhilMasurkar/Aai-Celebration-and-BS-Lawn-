@@ -33,9 +33,9 @@ export const contact = {
 
 // Placeholder photos (Unsplash) — replace with real venue photos later.
 export const heroImage = photo(
-  "1745573673583-a51f665ae48e",
-  "फुले आणि पडद्यांनी सजवलेला लग्न स्टेज",
-  "Wedding stage decorated with flowers and drapes",
+  "1745573674471-e057af420757",
+  "फुलांनी सजवलेला लग्न स्टेज",
+  "Wedding stage decorated with flowers",
 )
 
 // The three venues. Facts come from each venue's package poster; photos are placeholders.

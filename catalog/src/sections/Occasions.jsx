@@ -1,19 +1,17 @@
 import { Ornament } from '@/components/SectionHeading'
-import { brand, occasions, ui } from '@/content'
+import { occasions, ui } from '@/content'
 import { useLang } from '@/lang'
 
-// The one dark band mid-page: the brand's own promise, then what they host.
+// A soft band between the gallery and the rules: what they host.
 export default function Occasions() {
   const { t } = useLang()
   return (
-    <section aria-labelledby="occasions-title" className="bg-maroon-deep px-4 py-20 text-center text-canvas sm:py-24">
+    <section aria-labelledby="occasions-title" className="bg-mist px-4 py-16 text-center sm:py-20">
       <div className="mx-auto max-w-3xl">
-        <Ornament className="mx-auto text-gold-soft" />
-        <p className="mt-6 font-display text-[clamp(1.6rem,5.5vw,2.5rem)] leading-snug text-balance">{t(brand.tagline)}</p>
-        <h2 id="occasions-title" className="mt-12 font-sans text-base font-medium text-gold-light">
+        <h2 id="occasions-title" className="font-sans text-base font-semibold text-gold-deep">
           {t(ui.occasionsTitle)}
         </h2>
-        <ul className="mt-4 flex flex-wrap justify-center gap-x-3 gap-y-2 font-display text-2xl sm:text-3xl">
+        <ul className="mt-4 flex flex-wrap justify-center gap-x-3 gap-y-2 font-display text-[1.7rem] text-maroon sm:text-4xl">
           {occasions.map((o, i) => (
             <li key={o.en} className="flex items-center gap-3">
               {i > 0 && <span aria-hidden="true" className="size-1.5 rotate-45 bg-gold-soft" />}
@@ -21,6 +19,7 @@ export default function Occasions() {
             </li>
           ))}
         </ul>
+        <Ornament className="mx-auto mt-8 text-gold-soft" />
       </div>
     </section>
   )

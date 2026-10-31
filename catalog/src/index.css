@@ -9,12 +9,13 @@
   --font-heading: var(--font-display);
 
   /* Brand palette — maroon and gold sampled from content/logo_02.png. Use these everywhere. */
-  --color-maroon: #7a0811;       /* logo lettering — primary, hero and header */
-  --color-maroon-deep: #540305;  /* logo shadow — dark bands, hover */
+  --color-maroon: #7a0811;       /* logo lettering — headings, buttons */
+  --color-maroon-deep: #540305;  /* logo shadow — hover */
   --color-gold: #b87a28;         /* logo gold, deep — lines and icons on light */
   --color-gold-soft: #cb9544;    /* logo gold, mid — ornament */
   --color-gold-light: #d1a773;   /* logo gold highlight — text on maroon */
-  --color-canvas: #fbf8f7;       /* page — near-white tinted toward the maroon, not cream */
+  --color-gold-deep: #8a5a17;    /* logo gold, darkened — small gold text on white (≥ 5:1) */
+  --color-canvas: #fbf8f7;       /* light text on maroon buttons */
   --color-mist: #f4eeec;         /* quiet surfaces */
   --color-ink: #2b1a17;          /* body text */
   --color-muted-ink: #5f4b47;    /* secondary text (≥ 7:1 on canvas) */
@@ -43,16 +44,16 @@
   --radius-xl: calc(var(--radius) * 1.4);
 }
 
-/* ponytail: light theme only — maroon hero + near-white body is the brand look */
+/* ponytail: light theme only — photo-first, white page, maroon/gold as accents */
 :root {
-  --background: #fbf8f7;
+  --background: #ffffff;
   --foreground: #2b1a17;
   --card: #ffffff;
   --card-foreground: #2b1a17;
   --popover: #ffffff;
   --popover-foreground: #2b1a17;
   --primary: #7a0811;
-  --primary-foreground: #fbf8f7;
+  --primary-foreground: #ffffff;
   --secondary: #f4eeec;
   --secondary-foreground: #7a0811;
   --muted: #f4eeec;
@@ -97,15 +98,14 @@
 @keyframes rise {
   from { transform: translateY(28px); }
 }
-.arch-reveal {
-  animation: arch-reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.25s backwards;
+.photo-reveal {
+  animation: photo-reveal 1.1s cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
-@keyframes arch-reveal {
-  from { clip-path: inset(100% 0 0 0 round 999px 999px 0 0); }
-  to { clip-path: inset(0 0 0 0 round 999px 999px 0 0); }
+@keyframes photo-reveal {
+  from { transform: scale(1.06); filter: blur(6px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .rise, .arch-reveal { animation: none; }
+  .rise, .photo-reveal { animation: none; }
 }
