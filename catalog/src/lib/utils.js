@@ -1,5 +1,3 @@
-export { cn } from "cn"
-
 const inr = new Intl.NumberFormat("en-IN", {
   style: "currency",
   currency: "INR",

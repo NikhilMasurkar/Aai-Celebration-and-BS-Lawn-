@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import App from './App'
 import { brand, contact, ruleHighlights, ui } from './content'
@@ -36,9 +36,11 @@ it('shows key rules up front and all 13 after expanding', async () => {
   // the open list must size to its text: a height frozen at open time cut off the last rules
   // once the text re-wrapped (font load, language switch, phone rotation)
   const list = within(rules).getAllByRole('list').find((l) => l.tagName === 'OL')
-  for (let el = list.parentElement; el && el !== rules; el = el.parentElement) {
-    expect(el.className).not.toMatch(/radix-accordion-content-height/)
-  }
+  await waitFor(() => {
+    for (let el = list.parentElement; el && el !== rules; el = el.parentElement) {
+      expect(el.style.height).not.toMatch(/px$/)
+    }
+  })
 })
 
 it('links the address to Google Maps in a new tab', () => {

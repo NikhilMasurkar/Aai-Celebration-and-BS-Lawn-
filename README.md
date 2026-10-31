@@ -12,9 +12,9 @@ Each folder is a separate app with its own `package.json` and README; run comman
 
 ## Shared brand
 
-- **Colours** (from the logo): maroon `#7A0811`, deep maroon `#540305`, gold `#B87A28` / `#CB9544` / `#D1A773`, white page, surface `#F4EEEC`, small gold text `#8A5A17`. Light, photo-first look: maroon and gold as accents, never as full-screen backgrounds. The source of truth is the `@theme` block in [`catalog/src/index.css`](catalog/src/index.css).
+- **Colours** (from the logo): maroon `#7A0811`, deep maroon `#540305`, gold `#B87A28` / `#CB9544` / `#D1A773`, white page, surface `#F4EEEC`, small gold text `#8A5A17`. Light, photo-first look: maroon and gold as accents, never as full-screen backgrounds. The source of truth is the MUI theme in [`catalog/src/theme.js`](catalog/src/theme.js).
 - **Fonts:** Rozha One (headings) + Anek Devanagari (text) — both cover Marathi and English.
-- **Code:** React + Vite in JavaScript, Tailwind CSS, shadcn/ui.
+- **Code:** React + Vite in JavaScript, MUI (Material UI) with a shared brand theme.
 - **Contact:** 7507504947 · 9284325413 (WhatsApp: 9284325413).
 
 ## Hosting

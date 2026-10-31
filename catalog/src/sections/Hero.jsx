@@ -1,5 +1,9 @@
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 import { Phone } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { brand, contact, heroImage, packages, ui } from '@/content'
 import { useLang } from '@/lang'
 import { formatINR, telUrl } from '@/lib/utils'
@@ -12,51 +16,69 @@ export default function Hero() {
   const [mark, ...rest] = t(brand.name).split(' ')
 
   return (
-    <section aria-labelledby="hero-title" className="bg-background">
-      <div className="mx-auto grid max-w-6xl md:grid-cols-[1fr_1.15fr] md:items-center md:gap-12 md:px-4 md:py-14">
+    <Box component="section" aria-labelledby="hero-title">
+      <Container
+        maxWidth="lg"
+        disableGutters
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: { md: '1fr 1.15fr' },
+          alignItems: { md: 'center' },
+          columnGap: { md: 6 },
+          px: { md: 2 },
+          py: { md: 7 },
+        }}
+      >
         {/* phones: edge-to-edge photo first; desktop: photo on the right */}
-        <div className="md:order-2">
-          <img
+        <Box sx={{ order: { md: 2 } }}>
+          <Box
+            component="img"
             src={heroImage.src}
             srcSet={heroImage.srcSet}
-            sizes="(min-width: 768px) 55vw, 100vw"
+            sizes="(min-width: 900px) 55vw, 100vw"
             alt={t(heroImage.alt)}
             fetchPriority="high"
-            className="photo-reveal h-[min(42svh,400px)] w-full rounded-b-[28px] bg-mist object-cover md:h-[min(72svh,620px)] md:rounded-[28px]"
+            className="photo-reveal"
+            sx={{
+              display: 'block',
+              width: 1,
+              height: { xs: 'min(42svh, 400px)', md: 'min(72svh, 620px)' },
+              objectFit: 'cover',
+              bgcolor: 'brand.mist',
+              borderRadius: { xs: '0 0 28px 28px', md: '28px' },
+            }}
           />
-        </div>
+        </Box>
 
-        <div className="px-4 pt-6 pb-14 md:order-1 md:p-0">
-          <h1 id="hero-title" className="rise">
-            <span className="text-[clamp(3.5rem,16vw,5.5rem)] leading-none text-maroon">{mark}</span>{' '}
-            <span className="block text-[clamp(1.85rem,7.5vw,3rem)] leading-tight text-ink">{rest.join(' ')}</span>
-          </h1>
-          <p className="rise mt-4 max-w-md text-lg leading-relaxed text-muted-ink" style={{ '--i': 1 }}>
+        <Box sx={{ order: { md: 1 }, px: { xs: 2, md: 0 }, pt: { xs: 3, md: 0 }, pb: { xs: 7, md: 0 } }}>
+          <Typography id="hero-title" variant="h1" className="rise">
+            <Box component="span" sx={{ fontSize: 'clamp(3.5rem, 16vw, 5.5rem)', lineHeight: 1, color: 'primary.main' }}>
+              {mark}
+            </Box>{' '}
+            <Box component="span" sx={{ display: 'block', fontSize: 'clamp(1.85rem, 7.5vw, 3rem)', lineHeight: 1.2 }}>
+              {rest.join(' ')}
+            </Box>
+          </Typography>
+
+          <Typography className="rise" style={{ '--i': 1 }} sx={{ mt: 2, maxWidth: 448, fontSize: '1.125rem', lineHeight: 1.6, color: 'text.secondary' }}>
             {t(brand.tagline)}
-          </p>
+          </Typography>
 
-          <div className="rise mt-7" style={{ '--i': 2 }}>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="h-12 rounded-lg bg-maroon px-6 text-base text-white hover:bg-maroon-deep">
-                <a href="#packages">{t(ui.viewPackages)}</a>
+          <Box className="rise" style={{ '--i': 2 }} sx={{ mt: 3.5 }}>
+            <Stack direction="row" useFlexGap sx={{ flexWrap: 'wrap', gap: 1.5 }}>
+              <Button variant="contained" size="large" href="#packages">
+                {t(ui.viewPackages)}
               </Button>
-              <Button
-                asChild
-                size="lg"
-                variant="ghost"
-                className="h-12 rounded-lg border border-solid border-maroon/35 bg-transparent px-6 text-base text-maroon hover:bg-mist hover:text-maroon"
-              >
-                <a href={telUrl(contact.phones[0])}>
-                  <Phone aria-hidden="true" /> {t(ui.call)}
-                </a>
+              <Button variant="outlined" size="large" href={telUrl(contact.phones[0])} startIcon={<Phone size={18} aria-hidden="true" />}>
+                {t(ui.call)}
               </Button>
-            </div>
-            <p className="mt-4 text-base font-semibold text-gold-deep">
+            </Stack>
+            <Typography sx={{ mt: 2, fontWeight: 600, color: 'secondary.dark' }}>
               {t(ui.fromPrice).replace('{price}', formatINR(lowestPrice))}
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
+            </Typography>
+          </Box>
+        </Box>
+      </Container>
+    </Box>
   )
 }

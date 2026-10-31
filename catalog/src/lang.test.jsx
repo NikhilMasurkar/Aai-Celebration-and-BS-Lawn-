@@ -58,8 +58,10 @@ it('falls back to Marathi when an English string is missing', () => {
 
 it('header toggle switches the page to English', async () => {
   render(<LangProvider><Header /><Probe /></LangProvider>)
-  await userEvent.click(screen.getByRole('radio', { name: 'EN' }))
+  // MUI ToggleButtons are buttons with aria-pressed
+  await userEvent.click(screen.getByRole('button', { name: 'EN' }))
   expect(api.lang).toBe('en')
-  await userEvent.click(screen.getByRole('radio', { name: 'मराठी' }))
+  expect(screen.getByRole('button', { name: 'EN' })).toHaveAttribute('aria-pressed', 'true')
+  await userEvent.click(screen.getByRole('button', { name: 'मराठी' }))
   expect(api.lang).toBe('mr')
 })

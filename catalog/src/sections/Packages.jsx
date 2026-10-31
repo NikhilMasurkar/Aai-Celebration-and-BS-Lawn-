@@ -1,10 +1,34 @@
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
+import Grid from '@mui/material/Grid'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import Typography from '@mui/material/Typography'
 import { Check, MessageCircle, Plus } from 'lucide-react'
 import SectionHeading from '@/components/SectionHeading'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 import { contact, packages, ui, venues } from '@/content'
 import { useLang } from '@/lang'
-import { cn, formatINR, whatsappUrl } from '@/lib/utils'
+import { displayFont } from '@/theme'
+import { formatINR, whatsappUrl } from '@/lib/utils'
+
+function ItemList({ items, icon, muted }) {
+  const { t } = useLang()
+  return (
+    <List dense disablePadding sx={{ mt: 1.5, color: muted ? 'text.secondary' : 'text.primary' }}>
+      {items.map((item) => (
+        <ListItem key={item.en} disableGutters sx={{ alignItems: 'flex-start', py: 0.4 }}>
+          <ListItemIcon sx={{ color: muted ? 'inherit' : 'secondary.main' }}>{icon}</ListItemIcon>
+          <ListItemText primary={t(item)} sx={{ m: 0 }} slotProps={{ primary: { variant: 'body1' } }} />
+        </ListItem>
+      ))}
+    </List>
+  )
+}
 
 function PackageCard({ pkg }) {
   const { t } = useLang()
@@ -17,51 +41,46 @@ function PackageCard({ pkg }) {
 
   return (
     <Card
+      variant="outlined"
       role="article"
       aria-labelledby={titleId}
-      className={cn(
-        'gap-0 rounded-2xl border p-6 shadow-none ring-0 sm:p-7',
-        tinted ? 'border-maroon/20 bg-mist' : 'border-border bg-white',
-      )}
+      sx={{
+        height: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        p: { xs: 3, sm: 3.5 },
+        borderRadius: 4,
+        bgcolor: tinted ? 'brand.mist' : 'background.paper',
+        borderColor: tinted ? 'rgba(122, 8, 17, 0.2)' : 'divider',
+      }}
     >
-      <p className="text-base font-semibold text-gold-deep">{t(venue.name)}</p>
-      <h3 id={titleId} className="mt-1 text-[1.65rem] text-maroon">
+      <Typography sx={{ fontWeight: 600, color: 'secondary.dark' }}>{t(venue.name)}</Typography>
+      <Typography id={titleId} variant="h3" sx={{ mt: 0.5, fontSize: '1.65rem' }}>
         {t(pkg.name)}
-      </h3>
-      <p className="mt-3 font-display text-5xl leading-none text-ink">{price}</p>
+      </Typography>
+      <Typography sx={{ mt: 1.5, fontFamily: displayFont, fontSize: '3rem', lineHeight: 1 }}>{price}</Typography>
 
-      <h4 className="mt-7 text-base font-semibold text-ink">{t(ui.included)}</h4>
-      <ul className="mt-3 space-y-2">
-        {pkg.included.map((item) => (
-          <li key={item.en} className="flex gap-2.5">
-            <Check className="mt-1 size-4 shrink-0 text-gold" aria-hidden="true" />
-            <span>{t(item)}</span>
-          </li>
-        ))}
-      </ul>
+      <Typography sx={{ mt: 3.5, fontWeight: 600 }}>{t(ui.included)}</Typography>
+      <ItemList items={pkg.included} icon={<Check size={16} aria-hidden="true" />} />
 
-      <h4 className="mt-6 border-t border-maroon/15 pt-5 text-base font-semibold text-ink">{t(ui.extras)}</h4>
-      <ul className="mt-3 space-y-1.5 text-muted-ink">
-        {pkg.extras.map((item) => (
-          <li key={item.en} className="flex gap-2.5">
-            <Plus className="mt-1 size-3.5 shrink-0" aria-hidden="true" />
-            <span>{t(item)}</span>
-          </li>
-        ))}
-      </ul>
+      <Divider sx={{ mt: 3, mb: 2.5 }} />
+      <Typography sx={{ fontWeight: 600 }}>{t(ui.extras)}</Typography>
+      <ItemList items={pkg.extras} icon={<Plus size={14} aria-hidden="true" />} muted />
 
-      {/* mt-auto keeps the buttons aligned at the bottom when cards sit side by side */}
-      <div className="mt-auto pt-8">
+      {/* mt: auto keeps the buttons aligned at the bottom when cards sit side by side */}
+      <Box sx={{ mt: 'auto', pt: 4 }}>
         <Button
-          asChild
-          size="lg"
-          className="h-12 w-full rounded-lg bg-maroon text-base text-white hover:bg-maroon-deep"
+          variant="contained"
+          size="large"
+          fullWidth
+          href={whatsappUrl(contact.whatsapp, message)}
+          target="_blank"
+          rel="noopener noreferrer"
+          startIcon={<MessageCircle size={18} aria-hidden="true" />}
         >
-          <a href={whatsappUrl(contact.whatsapp, message)} target="_blank" rel="noopener noreferrer">
-            <MessageCircle aria-hidden="true" /> {t(ui.enquire)}
-          </a>
+          {t(ui.enquire)}
         </Button>
-      </div>
+      </Box>
     </Card>
   )
 }
@@ -69,15 +88,17 @@ function PackageCard({ pkg }) {
 export default function Packages() {
   const { t } = useLang()
   return (
-    <section id="packages" aria-labelledby="packages-title" className="scroll-mt-16 px-4 py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl">
+    <Box component="section" id="packages" aria-labelledby="packages-title" sx={{ scrollMarginTop: 64, py: { xs: 10, sm: 14 } }}>
+      <Container maxWidth="lg">
         <SectionHeading id="packages-title">{t(ui.packagesTitle)}</SectionHeading>
-        <div className="grid gap-5 lg:grid-cols-3 lg:gap-6">
+        <Grid container spacing={{ xs: 2.5, lg: 3 }}>
           {packages.map((pkg) => (
-            <PackageCard key={pkg.id} pkg={pkg} />
+            <Grid key={pkg.id} size={{ xs: 12, lg: 4 }}>
+              <PackageCard pkg={pkg} />
+            </Grid>
           ))}
-        </div>
-      </div>
-    </section>
+        </Grid>
+      </Container>
+    </Box>
   )
 }

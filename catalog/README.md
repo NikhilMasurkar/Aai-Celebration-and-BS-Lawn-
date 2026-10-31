@@ -1,7 +1,7 @@
 # आई Celebration & BS Lawn — Catalog
 
 The QR-code catalog for the banquet hall and lawn, live at **https://catalog.aaicelebration.in**.
-One page, Marathi/English, built with Vite + React (JavaScript), Tailwind CSS and shadcn/ui.
+One page, Marathi/English, built with Vite + React (JavaScript) and MUI (Material UI).
 
 ## Change prices, items, rules or text
 
@@ -30,9 +30,9 @@ To use your own:
 
 ## Colours
 
-The palette is sampled from the logo and defined once in `src/index.css` (`@theme`):
+The palette is sampled from the logo and defined once in the MUI theme, `src/theme.js`:
 maroon `#7A0811`, deep maroon `#540305`, gold `#B87A28` / `#CB9544` / `#D1A773`, page white, surface `#F4EEEC` (mist), small gold text `#8A5A17` (gold-deep). Light, photo-first theme: maroon and gold are accents only.
-Use the Tailwind names (`bg-maroon`, `text-gold-deep`, `bg-mist`, …) rather than raw hex values.
+Use theme names in `sx` (`color: 'primary.main'`, `color: 'secondary.dark'`, `bgcolor: 'brand.mist'`, …) rather than raw hex values. Layout uses MUI `Box`, `Container`, `Grid`, `Stack` and `Typography`.
 
 Fonts: **Rozha One** for headings and **Anek Devanagari** for text. Both cover Marathi and English.
 

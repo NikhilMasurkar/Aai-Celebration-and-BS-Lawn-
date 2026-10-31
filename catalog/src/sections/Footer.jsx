@@ -1,6 +1,11 @@
+import Box from '@mui/material/Box'
+import Link from '@mui/material/Link'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 import { brand, contact, ui } from '@/content'
 import { useLang } from '@/lang'
 import { telUrl } from '@/lib/utils'
+import { displayFont } from '@/theme'
 
 const year = new Date().getFullYear()
 
@@ -8,24 +13,24 @@ export default function Footer() {
   const { t } = useLang()
   return (
     // extra bottom padding on phones so the fixed ContactBar never covers the footer
-    <footer className="border-t border-border bg-white px-4 pt-14 pb-28 md:pb-12">
-      <div className="mx-auto flex max-w-6xl flex-col items-center gap-5 text-center">
-        <img src="/logo.png" alt="" width="64" height="64" className="size-16" />
-        <p className="font-display text-2xl text-maroon">{t(brand.name)}</p>
-        <div>
-          <p className="text-base font-semibold text-gold-deep">{t(ui.contactTitle)}</p>
-          <p className="mt-1 flex flex-wrap justify-center gap-x-4 text-lg text-ink">
+    <Box component="footer" sx={{ borderTop: 1, borderColor: 'divider', px: 2, pt: 7, pb: { xs: 14, md: 6 } }}>
+      <Stack spacing={2.5} sx={{ alignItems: 'center', textAlign: 'center' }}>
+        <Box component="img" src="/logo.png" alt="" width={64} height={64} sx={{ display: 'block' }} />
+        <Typography sx={{ fontFamily: displayFont, fontSize: '1.5rem', color: 'primary.main' }}>{t(brand.name)}</Typography>
+        <Box>
+          <Typography sx={{ fontWeight: 600, color: 'secondary.dark' }}>{t(ui.contactTitle)}</Typography>
+          <Stack direction="row" spacing={2} sx={{ mt: 0.5, justifyContent: 'center' }}>
             {contact.phones.map((phone) => (
-              <a key={phone} href={telUrl(phone)} className="inline-flex min-h-11 items-center px-1 underline-offset-4 hover:underline">
+              <Link key={phone} href={telUrl(phone)} color="textPrimary" underline="hover" sx={{ display: 'inline-flex', alignItems: 'center', minHeight: 44, px: 0.5, fontSize: '1.125rem' }}>
                 {phone}
-              </a>
+              </Link>
             ))}
-          </p>
-        </div>
-        <p className="text-sm text-muted-ink">
+          </Stack>
+        </Box>
+        <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           © {year} {t(brand.name)}
-        </p>
-      </div>
-    </footer>
+        </Typography>
+      </Stack>
+    </Box>
   )
 }

@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { ui, venues } from '@/content'
 import { LangProvider } from '@/lang'
@@ -27,12 +27,14 @@ it('opens a photo full-screen and closes it with Escape', async () => {
   const dialog = screen.getByRole('dialog')
   expect(within(dialog).getByAltText(palace.photos[1].alt.mr)).toBeInTheDocument()
   await userEvent.keyboard('{Escape}')
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  // MUI fades the viewer out before removing it
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
 })
 
 it('closes the photo with a visible close button labelled in the chosen language', async () => {
   renderGallery()
   await userEvent.click(screen.getByRole('button', { name: palace.photos[0].alt.mr }))
   await userEvent.click(within(screen.getByRole('dialog')).getByRole('button', { name: ui.closePhoto.mr }))
-  expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+  // MUI fades the viewer out before removing it
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument())
 })

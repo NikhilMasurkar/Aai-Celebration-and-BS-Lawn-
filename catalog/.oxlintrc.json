@@ -12,8 +12,5 @@
         "allowConstantExport": true
       }
     ]
-  },
-  "ignorePatterns": [
-    "src/components/ui/**"
-  ]
+  }
 }
